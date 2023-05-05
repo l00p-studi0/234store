@@ -14,7 +14,15 @@ const Item = () => {
   const [quantity, setQuantity] = useState(1);
   const [open, setOpenCart] = useState(false);
 
-  const closeCart = () => {
+  const closeCart = (event, reason) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
     setOpenCart(!open);
   };
 
@@ -95,7 +103,7 @@ const Item = () => {
                 </Select>
               </FormControl>
             </Box>
-            <div className="flex items-baseline justify-between">
+            <div className="flex items-end justify-between">
               <div className="w-[200px] h-[50px] mt-20 border-[1px] border-ashh flex justify-between items-center mr-1">
                 <Button
                   className=" h-full w-1/3 font-y"
