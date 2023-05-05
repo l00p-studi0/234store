@@ -29,7 +29,7 @@ const Shop = () => {
               invisible={false}
               badgeContent={3}
               sx={{
-                "& .css-fvc8ir-MuiBadge-badge": {
+                "& .css-1o4n2ye": {
                   backgroundColor: "#dc2626",
                   color: "white",
                 },

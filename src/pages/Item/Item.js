@@ -45,7 +45,7 @@ const Item = () => {
               invisible={false}
               badgeContent={3}
               sx={{
-                "& .css-fvc8ir-MuiBadge-badge": {
+                "& .css-1o4n2ye": {
                   backgroundColor: "#dc2626",
                   color: "white",
                 },
@@ -77,11 +77,11 @@ const Item = () => {
               <FormControl
                 className="w-[200px]"
                 sx={{
-                  "& .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                  "& .css-fvipm8.Mui-focused .MuiOutlinedInput-notchedOutline":
                     {
                       borderColor: "#dc2626",
                     },
-                  "& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused":
+                  "& .css-1ald77x.Mui-focused":
                     {
                       color: "#dc2626",
                     },
