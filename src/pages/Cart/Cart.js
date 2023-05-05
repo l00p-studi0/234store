@@ -116,7 +116,7 @@ const Cart = (props) => {
           
         </div>
 
-        <div className="border-t-[1px] border-ashh absolute w-full bottom-0 p-6">
+        <div className="border-t-[1px] border-ashh absolute w-full bottom-0 p-6 bg-white">
           <div className="flex justify-between">
             <p className="font-y font-semibold text-lg ">Subtotal: </p>
             <p className="font-y font-semibold text-2xl ">$120 </p>
