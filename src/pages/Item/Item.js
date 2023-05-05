@@ -94,7 +94,7 @@ const Item = () => {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={size}
-                  label="Age"
+                  label="Select Size"
                   onChange={handleChange}
                 >
                   <MenuItem value="size1" className="font-y">
