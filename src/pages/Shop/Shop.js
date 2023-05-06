@@ -1,17 +1,37 @@
-import { Badge,  IconButton } from "@mui/material";
-import React, { useState } from "react";
+import { Badge, IconButton } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "./../../assets/img/234logo.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Grid from "@mui/material/Unstable_Grid2";
 import Cart from "../Cart/Cart";
+import axios from "axios";
+import { setId, setOutfit } from "../../redux/outfits";
+import { useDispatch, useSelector } from "react-redux";
 
 const Shop = () => {
   const [open, setOpenCart] = useState(false);
+  const dispatch = useDispatch();
+  const { outfits } = useSelector((state) => state.outfit);
 
   const closeCart = () => {
     setOpenCart(!open);
   };
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axios({
+          method: "get",
+          url: "https://234-backend-api-production.up.railway.app/products/all-products/?limit=0&skip=0",
+        });
+        dispatch(setOutfit(response.data.data.Products.reverse()));
+      } catch (error) {
+        // console.log(error);
+      }
+    })();
+    // console.log(outfits);
+  }, []);
 
   return (
     <>
@@ -23,7 +43,7 @@ const Shop = () => {
           >
             Back
           </Link>
-          <img src={logo} alt="logo" className="w-[100px] max-md:w-[50px]"  />
+          <img src={logo} alt="logo" className="w-[100px] max-md:w-[50px]" />
           <IconButton onClick={closeCart}>
             <Badge
               invisible={false}
@@ -75,154 +95,24 @@ const Shop = () => {
           </p>
         </Box> */}
 
-          <Grid container className="w-full" spacing={2}>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <Link to="/shop/Item1">
-                <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-                <div className="flex justify-between py-3">
-                  <p className="text-black font-y font-medium text-xl">
-                    Outfit Name
-                  </p>
-                  <p className="text-black font-y font-bold text-xl">$60</p>
-                </div>
-              </Link>
-            </Grid>
+          
 
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
-            <Grid lg={3} md={4} sm={6} xs={6} className="cursor-pointer">
-              <div className="w-full h-[300px] max-sm:h-[200px] bg-ashh"></div>
-              <div className="flex justify-between py-3">
-                <p className="text-black font-y font-medium text-xl">
-                  Outfit Name
-                </p>
-                <p className="text-black font-y font-bold text-xl">$60</p>
-              </div>
-            </Grid>
+          <Grid container className="w-full" spacing={2}>
+          {outfits?.map((item, index) => {
+            return (
+              <Grid key={index} lg={3} md={4} sm={6} xs={6} className="cursor-pointer" onClick={()=>dispatch(setId(item._id))}>
+                <Link to="/shop/Item1" className="flex flex-col justify-between h-full">
+                    <img src={item.featuredImages[0]} alt="" />
+                  <div className="flex justify-between py-3">
+                    <p className="text-black font-y font-medium text-xl">
+                      {item.Name}
+                    </p>
+                    <p className="text-black font-y font-bold text-xl">${item.Price}</p>
+                  </div>
+                </Link>
+              </Grid>
+            );
+          })}
           </Grid>
         </div>
       </div>

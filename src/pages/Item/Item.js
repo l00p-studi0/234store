@@ -1,5 +1,5 @@
 import { Badge, Box, Button, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import logo from "./../../assets/img/234logo.png";
@@ -8,13 +8,17 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Cart from "../Cart/Cart";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const Item = () => {
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [open, setOpenCart] = useState(false);
+  const { itemId } = useSelector((state) => state.outfit);
+  const [itemDetail, setItemDetail] = useState([]);
 
-  const closeCart = (event, reason) => {
+  const closeCart = (event) => {
     if (
       event &&
       event.type === "keydown" &&
@@ -29,6 +33,22 @@ const Item = () => {
   const handleChange = (event) => {
     setSize(event.target.value);
   };
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axios({
+          method: "get",
+          url: `https://234-backend-api-production.up.railway.app/products/${itemId}`,
+        });
+        setItemDetail(response.data.data.product);
+        console.log(response.data.data.product);
+      } catch (error) {
+        // console.log(error);
+      }
+    })();
+    // console.log(outfits);
+  }, []);
+
   return (
     <>
       <div className="w-full">
@@ -67,10 +87,10 @@ const Item = () => {
           </div>
           <div className="w-2/4 max-md:w-full flex flex-col justify-between">
             <p className="text-[30px] p-0 m-0 font-y font-medium">
-              Outfit Name
+              {itemDetail.Name}
             </p>
             <p className="text-[40px] p-0 m-0 font-y font-semibold mt-5">
-              ${60 * quantity}
+              ${itemDetail.Price * quantity}
             </p>
 
             <Box className="mt-20">
@@ -81,10 +101,9 @@ const Item = () => {
                     {
                       borderColor: "#dc2626",
                     },
-                  "& .css-1ald77x.Mui-focused":
-                    {
-                      color: "#dc2626",
-                    },
+                  "& .css-1ald77x.Mui-focused": {
+                    color: "#dc2626",
+                  },
                 }}
               >
                 <InputLabel id="demo-simple-select-label" className="font-y">
@@ -97,9 +116,11 @@ const Item = () => {
                   label="Select Size"
                   onChange={handleChange}
                 >
-                  <MenuItem value="size1" className="font-y">
-                    Size1
-                  </MenuItem>
+                    {/* {itemDetail.Size.map((item, index) => {
+                        <MenuItem value={item} className="font-y">
+                        {item}
+                        </MenuItem>;
+                    })} */}
                 </Select>
               </FormControl>
             </Box>

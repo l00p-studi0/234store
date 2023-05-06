@@ -7,7 +7,7 @@ import * as Yup from "yup";
 
 const Cart = (props) => {
   useEffect(() => {
-    console.log(props.openCart);
+    // console.log(props.openCart);
   }, []);
   const [ship, setShip] = useState("cart");
 

@@ -23,6 +23,6 @@ export const OutfitSlice = createSlice({
   },
 });
 
-export const { setOutfit} = OutfitSlice.actions;
+export const { setOutfit,setId,setCart} = OutfitSlice.actions;
 
 export default OutfitSlice.reducer;
