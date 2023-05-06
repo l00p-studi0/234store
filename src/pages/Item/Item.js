@@ -10,6 +10,7 @@ import Select from "@mui/material/Select";
 import Cart from "../Cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import Carousel from "nuka-carousel";
 
 const Item = () => {
   const [size, setSize] = useState("");
@@ -17,6 +18,8 @@ const Item = () => {
   const [open, setOpenCart] = useState(false);
   const { itemId } = useSelector((state) => state.outfit);
   const [itemDetail, setItemDetail] = useState([]);
+  const [slideIndex, setslideIndex] = useState(0);
+
 
   const closeCart = (event) => {
     if (
@@ -41,7 +44,7 @@ const Item = () => {
           url: `https://234-backend-api-production.up.railway.app/products/${itemId}`,
         });
         setItemDetail(response.data.data.product);
-        console.log(response.data.data.product);
+        // console.log(response.data.data.product);
       } catch (error) {
         // console.log(error);
       }
@@ -78,11 +81,22 @@ const Item = () => {
 
         <Box className="w-full flex px-10 sm:px-40 md:px-10  mt-20 max-md:flex-col">
           <div className="w-2/4 max-md:w-full mr-20 flex lg:flex-row-reverse md:flex-col flex-col">
-            <div className="w-full h-[400px]  lg:h-[400px] md:h-[350px] bg-ashh max-lg:mb-5"></div>
+            <Carousel
+              className="w-full !h-[400px]  lg:h-[400px] md:h-[350px]  max-lg:mb-5 overflow-hidden"
+              slideIndex={slideIndex}
+            >
+              {itemDetail.featuredImages?.map((item, index) => {
+                return <img src={item} alt="outfit" />;
+              })}
+            </Carousel>
             <div className="flex lg:flex-col md:flex-row ">
-              <div className="w-[100px] h-[100px] bg-ashh mr-2 lg:mb-2"></div>
-              <div className="w-[100px] h-[100px] bg-ashh mr-2 lg:mb-2"></div>
-              <div className="w-[100px] h-[100px] bg-ashh mr-2 lg:mb-2"></div>
+              {itemDetail.featuredImages?.map((item, index) => {
+                return (
+                  <div key={index} className="w-[100px] h-[100px] block  mr-2 lg:mb-2 overflow-hidden cursor-pointer" onClick={()=>setslideIndex(index)}>
+                    <img  src={item} />
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="w-2/4 max-md:w-full flex flex-col justify-between">
@@ -116,11 +130,13 @@ const Item = () => {
                   label="Select Size"
                   onChange={handleChange}
                 >
-                    {/* {itemDetail.Size.map((item, index) => {
-                        <MenuItem value={item} className="font-y">
+                  {itemDetail.Size?.map((item, index) => {
+                    return (
+                      <MenuItem value={item} className="font-y" key={index}>
                         {item}
-                        </MenuItem>;
-                    })} */}
+                      </MenuItem>
+                    );
+                  })}
                 </Select>
               </FormControl>
             </Box>
