@@ -56,7 +56,7 @@ const Landing = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-1 left-1">
+      <div className="fixed bottom-1 left-5">
         <a href="" target="_blank">
           <img src={facebook} alt="facebook" className="w-[30px] my-3" />
         </a>

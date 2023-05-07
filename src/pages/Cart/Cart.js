@@ -14,7 +14,7 @@ const Cart = (props) => {
   const { cart } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    console.log(cart);
+    // console.log(cart);
   }, []);
 
   return (

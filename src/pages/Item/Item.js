@@ -17,6 +17,7 @@ import { setCart } from "../../redux/outfits";
 
 const Item = () => {
   const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [open, setOpenCart] = useState(false);
   const { itemId } = useSelector((state) => state.outfit);
@@ -30,6 +31,7 @@ const Item = () => {
     name: itemDetail.Name,
     price: itemDetail.Price * quantity,
     amount: quantity,
+    colors: color,
     size: "X",
   };
 
@@ -55,6 +57,9 @@ const Item = () => {
 
   const handleChange = (event) => {
     setSize(event.target.value);
+  };
+  const handleChangeColor = (event) => {
+    setColor(event.target.value);
   };
   useEffect(() => {
     (async function () {
@@ -133,7 +138,7 @@ const Item = () => {
 
             <Box className="mt-20">
               <FormControl
-                className="w-[200px]"
+                className="w-[200px] !mb-3 !mr-3"
                 sx={{
                   "& .css-fvipm8.Mui-focused .MuiOutlinedInput-notchedOutline":
                     {
@@ -153,6 +158,37 @@ const Item = () => {
                   value={size}
                   label="Select Size"
                   onChange={handleChange}
+                >
+                  {itemDetail.Size?.map((item, index) => {
+                    return (
+                      <MenuItem value={item} className="font-y" key={index}>
+                        {item}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+              <FormControl
+                className="w-[200px]"
+                sx={{
+                  "& .css-fvipm8.Mui-focused .MuiOutlinedInput-notchedOutline":
+                    {
+                      borderColor: "#dc2626",
+                    },
+                  "& .css-1ald77x.Mui-focused": {
+                    color: "#dc2626",
+                  },
+                }}
+              >
+                <InputLabel id="demo-simple-select-label" className="font-y">
+                  Select color
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={color}
+                  label="Select color"
+                  onChange={handleChangeColor}
                 >
                   {itemDetail.Size?.map((item, index) => {
                     return (
