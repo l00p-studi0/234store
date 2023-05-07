@@ -4,12 +4,18 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
 
 const Cart = (props) => {
   useEffect(() => {
     // console.log(props.openCart);
   }, []);
   const [ship, setShip] = useState("cart");
+  const { cart } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    console.log(cart);
+  }, []);
 
   return (
     <>
@@ -145,7 +151,9 @@ const Cart = (props) => {
             </div>
 
             <div className="p-8">
-              <p className="font-n text-lg font-semibold mb-10">Shipping Information</p>
+              <p className="font-n text-lg font-semibold mb-10">
+                Shipping Information
+              </p>
               <Formik
                 initialValues={{
                   firstname: "",
@@ -187,7 +195,12 @@ const Cart = (props) => {
                 }) => (
                   <form onSubmit={handleSubmit}>
                     <Box className="flex flex-col">
-                      <label htmlFor="firstname" className="font-n font-bold text-sm mb-1 mt-4">First name</label>
+                      <label
+                        htmlFor="firstname"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        First name
+                      </label>
                       <input
                         type="text"
                         id="firstname"
@@ -205,7 +218,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="lastname" className="font-n font-bold text-sm mb-1 mt-4">Last name</label>
+                      <label
+                        htmlFor="lastname"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        Last name
+                      </label>
                       <input
                         type="text"
                         id="lastname"
@@ -223,7 +241,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="email" className="font-n font-bold text-sm mb-1 mt-4">Email</label>
+                      <label
+                        htmlFor="email"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        Email
+                      </label>
                       <input
                         type="email"
                         id="email"
@@ -241,7 +264,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="phone" className="font-n font-bold text-sm mb-1 mt-4">Phone</label>
+                      <label
+                        htmlFor="phone"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        Phone
+                      </label>
                       <input
                         type="tel"
                         id="phone"
@@ -259,7 +287,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="address" className="font-n font-bold text-sm mb-1 mt-4">Address</label>
+                      <label
+                        htmlFor="address"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        Address
+                      </label>
                       <input
                         type="text"
                         id="address"
@@ -277,7 +310,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="city" className="font-n font-bold text-sm mb-1 mt-4">City</label>
+                      <label
+                        htmlFor="city"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        City
+                      </label>
                       <input
                         type="text"
                         id="city"
@@ -295,7 +333,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="country" className="font-n font-bold text-sm mb-1 mt-4">Country</label>
+                      <label
+                        htmlFor="country"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        Country
+                      </label>
                       <input
                         type="text"
                         id="country"
@@ -313,7 +356,12 @@ const Cart = (props) => {
                       )}
                     </Box>
                     <Box className="flex flex-col">
-                      <label htmlFor="state" className="font-n font-bold text-sm mb-1 mt-4">State</label>
+                      <label
+                        htmlFor="state"
+                        className="font-n font-bold text-sm mb-1 mt-4"
+                      >
+                        State
+                      </label>
                       <input
                         type="text"
                         id="state"
@@ -330,8 +378,11 @@ const Cart = (props) => {
                         </span>
                       )}
                     </Box>
-                    <button type="submit" className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10 hover:scale-90 duration-300">
-                        Continue to shipping
+                    <button
+                      type="submit"
+                      className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10 hover:scale-90 duration-300"
+                    >
+                      Continue to shipping
                     </button>
                   </form>
                 )}

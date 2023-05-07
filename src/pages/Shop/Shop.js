@@ -101,7 +101,7 @@ const Shop = () => {
           {outfits?.map((item, index) => {
             return (
               <Grid key={index} lg={3} md={4} sm={6} xs={6} className="cursor-pointer" onClick={()=>dispatch(setId(item._id))}>
-                <Link to="/shop/Item1" className="flex flex-col justify-between h-full">
+                <Link to="/shop/Item" className="flex flex-col justify-between h-full">
                     <img src={item.featuredImages[0]} alt="" />
                   <div className="flex justify-between py-3">
                     <p className="text-black font-y font-medium text-xl">

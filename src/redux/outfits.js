@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   outfits: [],
-  itemId:"",
-  cart:[]
+  itemId: "",
 };
 
 export const OutfitSlice = createSlice({
@@ -13,16 +12,13 @@ export const OutfitSlice = createSlice({
   reducers: {
     setOutfit: (state, action) => {
       state.outfits = action.payload;
-    },  
+    },
     setId: (state, action) => {
       state.itemId = action.payload;
-    },  
-    setCart: (state, action) => {
-      state.cart = action.payload;
-    },  
+    },
   },
 });
 
-export const { setOutfit,setId,setCart} = OutfitSlice.actions;
+export const { setOutfit, setId } = OutfitSlice.actions;
 
 export default OutfitSlice.reducer;

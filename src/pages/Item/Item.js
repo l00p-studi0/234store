@@ -11,6 +11,9 @@ import Cart from "../Cart/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Carousel from "nuka-carousel";
+import Dialog from "@mui/material/Dialog";
+import ClearIcon from "@mui/icons-material/Clear";
+import { setCart } from "../../redux/outfits";
 
 const Item = () => {
   const [size, setSize] = useState("");
@@ -19,7 +22,24 @@ const Item = () => {
   const { itemId } = useSelector((state) => state.outfit);
   const [itemDetail, setItemDetail] = useState([]);
   const [slideIndex, setslideIndex] = useState(0);
+  const [openAlert, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
 
+  const cartItem = {
+    image: itemDetail.length === 0 ? null : itemDetail.featuredImages[0],
+    name: itemDetail.Name,
+    price: itemDetail.Price * quantity,
+    amount: quantity,
+    size: "X",
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const closeCart = (event) => {
     if (
@@ -86,14 +106,18 @@ const Item = () => {
               slideIndex={slideIndex}
             >
               {itemDetail.featuredImages?.map((item, index) => {
-                return <img src={item} alt="outfit" />;
+                return <img src={item} alt="outfit" key={index} />;
               })}
             </Carousel>
             <div className="flex lg:flex-col md:flex-row ">
               {itemDetail.featuredImages?.map((item, index) => {
                 return (
-                  <div key={index} className="w-[100px] h-[100px] block  mr-2 lg:mb-2 overflow-hidden cursor-pointer" onClick={()=>setslideIndex(index)}>
-                    <img  src={item} />
+                  <div
+                    key={index}
+                    className="w-[100px] h-[100px] block  mr-2 lg:mb-2 overflow-hidden cursor-pointer"
+                    onClick={() => setslideIndex(index)}
+                  >
+                    <img src={item} />
                   </div>
                 );
               })}
@@ -161,7 +185,13 @@ const Item = () => {
                 </Button>
               </div>
 
-              <button className="bg-red h-[50px] w-1/2 text-white font-y font-medium text-lg max-lg:text-sm hover:-skew-y-3 hover:scale-90 duration-300 ">
+              <button
+                className="bg-red h-[50px] w-1/2 text-white font-y font-medium text-lg max-lg:text-sm hover:scale-90 duration-300 "
+                onClick={() => {
+                  handleClickOpen();
+                  // dispatch(setCart(itemDetail));
+                }}
+              >
                 Add to cart
               </button>
             </div>
@@ -169,6 +199,58 @@ const Item = () => {
         </Box>
       </div>
       <Cart openCart={open} closeCart={closeCart} />
+      <Dialog
+        open={openAlert}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{
+          "& .MuiPaper-root": {
+            width: "500px",
+          },
+        }}
+      >
+        <div className="w-full flex justify-end">
+          <IconButton onClick={handleClose}>
+            <ClearIcon />
+          </IconButton>
+        </div>
+
+        <div className="px-10 py-5 flex justify-between max-sm:flex-col max-sm:items-center ">
+          <div className="flex flex-col">
+            <div className=" w-[100px] h-[100px] overflow-hidden ">
+              <img
+                src={
+                  itemDetail.length === 0 ? null : itemDetail.featuredImages[0]
+                }
+                alt="item"
+              />
+            </div>
+            <div className="flex flex-col justify-between">
+              <p className="font-r font-semibold text-md ">Outfit name</p>
+              <p className="font-r font-medium text-sm ">Size: XXL </p>
+              <p className="font-r font-medium text-sm ">Quantity: 2 </p>
+            </div>
+          </div>
+          <div className="w-2/4 max-sm:w-full max-sm:mt-5 flex flex-col justify-between">
+            <div className="flex justify-between">
+              <p className="font-r font-semibold text-md ">Total:</p>
+              <p className="font-r font-semibold text-md ">
+                ${itemDetail.Price * quantity}
+              </p>
+            </div>
+            <button
+              className="bg-red h-[40px] w-full text-white font-r font-medium text-sm max-lg:text-sm mt-5 hover:scale-90 duration-300"
+              onClick={() => {
+                closeCart();
+                handleClose();
+              }}
+            >
+              View cart
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 };
