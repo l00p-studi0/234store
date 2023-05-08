@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // import axios from "axios";
 
 const initialState = {
-    cart:[]
+  cartItems: [],
 };
 
 export const cartSlice = createSlice({
@@ -10,11 +10,15 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     setCart: (state, action) => {
-      state.cart.push(action.payload);
+      state.cartItems = action.payload;
     },
+    deleteCart: (state, action) => {
+      state.cartItems = [];
+    },
+   
   },
 });
 
-export const { setCart } = cartSlice.actions;
+export const { setCart,deleteCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -13,7 +13,7 @@ import axios from "axios";
 import Carousel from "nuka-carousel";
 import Dialog from "@mui/material/Dialog";
 import ClearIcon from "@mui/icons-material/Clear";
-import { setCart } from "../../redux/outfits";
+import { setCart } from "../../redux/cart";
 
 const Item = () => {
   const [size, setSize] = useState("");
@@ -25,15 +25,23 @@ const Item = () => {
   const [slideIndex, setslideIndex] = useState(0);
   const [openAlert, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const { cartItems } = useSelector((state) => state.cartItem);
 
-  const cartItem = {
-    image: itemDetail.length === 0 ? null : itemDetail.featuredImages[0],
-    name: itemDetail.Name,
-    price: itemDetail.Price * quantity,
-    amount: quantity,
-    colors: color,
-    size: "X",
-  };
+  const cartItem = [
+    ...cartItems,
+    {
+      image: itemDetail.length === 0 ? null : itemDetail.featuredImages[0],
+      name: itemDetail.Name,
+      price: itemDetail.Price * quantity,
+      amount: quantity,
+      colors: color,
+      size: "X",
+      id: itemDetail._id
+    }
+  ];
+  useEffect(() => {
+    console.log(cartItems);
+  }, [])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -225,7 +233,8 @@ const Item = () => {
                 className="bg-red h-[50px] w-1/2 text-white font-y font-medium text-lg max-lg:text-sm hover:scale-90 duration-300 "
                 onClick={() => {
                   handleClickOpen();
-                  // dispatch(setCart(itemDetail));
+                  dispatch(setCart(cartItem));
+                  // console.log(cartItem);
                 }}
               >
                 Add to cart

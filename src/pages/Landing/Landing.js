@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setOutfit } from "../../redux/outfits";
 import logo from "./../../assets/img/234logo.png";
 import facebook from "./../../assets/img/facebook.png";
 import instagram from "./../../assets/img/instagram.png";
@@ -8,6 +11,7 @@ import tiktok from "./../../assets/img/tiktok.png";
 const Landing = () => {
   const [datestate, setdate] = useState("");
   const [time, settime] = useState("");
+  const dispatch = useDispatch()
   const func = () => {
     var d = new Date();
     var da = d.toLocaleTimeString();
@@ -17,6 +21,21 @@ const Landing = () => {
     setdate(data);
   };
   setInterval(func, 1000);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axios({
+          method: "get",
+          url: "https://234-backend-api-production.up.railway.app/products/all-products/?limit=0&skip=0",
+        });
+        dispatch(setOutfit(response.data.data.Products.reverse()));
+      } catch (error) {
+        // console.log(error);
+      }
+    })();
+    // console.log(outfits);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
@@ -36,22 +55,22 @@ const Landing = () => {
         <div className="flex flex-col items-center mt-10">
           <Link
             to="/about"
-            className="my-3 p-1 hover:text-red  duration-300 font-y text-lg"
+            className="my-3 p-1 px-7 hover:bg-red hover:skew-y-3 hover:scale-90  hover:text-white duration-300 font-y text-lg"
           >
-            about
+            About
           </Link>
           <Link
             to="/shop"
-            className="my-3  py-1 px-7 bg-red skew-y-3 hover:scale-90  text-white duration-300 font-y text-lg"
+            className="my-3  py-1 px-7 hover:bg-red hover:skew-y-3 hover:scale-90  hover:text-white duration-300 font-y text-lg"
           >
-            shop
+            Shop
           </Link>
-          <Link className="my-3 p-1 hover:text-red  duration-300 font-y text-lg">
-            FAQ
+          <Link className="my-3 p-1 px-7 hover:bg-red hover:skew-y-3 hover:scale-90  hover:text-white  duration-300 font-y text-lg">
+            Lookbook
           </Link>
 
-          <Link className="my-3 p-1 hover:text-red  duration-300 font-y text-lg">
-            contact
+          <Link className="my-3 p-1 px-7 hover:bg-red hover:skew-y-3 hover:scale-90  hover:text-white  duration-300 font-y text-lg">
+            Contact
           </Link>
         </div>
       </div>

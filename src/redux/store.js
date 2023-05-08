@@ -3,7 +3,7 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import outfitReducer from "./outfits";
-import cartReducer from "./cart"
+import cartSlice  from "./cart";
 
 const persistConfig = {
   key: "root",
@@ -11,7 +11,7 @@ const persistConfig = {
 };
 const rootReducer = combineReducers({
   outfit: outfitReducer,
-  cart: cartReducer,
+  cartItem: cartSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

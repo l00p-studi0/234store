@@ -5,8 +5,7 @@ import logo from "./../../assets/img/234logo.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Grid from "@mui/material/Unstable_Grid2";
 import Cart from "../Cart/Cart";
-import axios from "axios";
-import { setId, setOutfit } from "../../redux/outfits";
+import { setId } from "../../redux/outfits";
 import { useDispatch, useSelector } from "react-redux";
 
 const Shop = () => {
@@ -17,21 +16,6 @@ const Shop = () => {
   const closeCart = () => {
     setOpenCart(!open);
   };
-
-  useEffect(() => {
-    (async function () {
-      try {
-        const response = await axios({
-          method: "get",
-          url: "https://234-backend-api-production.up.railway.app/products/all-products/?limit=0&skip=0",
-        });
-        dispatch(setOutfit(response.data.data.Products.reverse()));
-      } catch (error) {
-        // console.log(error);
-      }
-    })();
-    // console.log(outfits);
-  }, []);
 
   return (
     <>
@@ -95,24 +79,35 @@ const Shop = () => {
           </p>
         </Box> */}
 
-          
-
           <Grid container className="w-full" spacing={2}>
-          {outfits?.map((item, index) => {
-            return (
-              <Grid key={index} lg={3} md={4} sm={6} xs={6} className="cursor-pointer" onClick={()=>dispatch(setId(item._id))}>
-                <Link to="/shop/Item" className="flex flex-col justify-between h-full">
+            {outfits?.map((item, index) => {
+              return (
+                <Grid
+                  key={index}
+                  lg={3}
+                  md={4}
+                  sm={6}
+                  xs={6}
+                  className="cursor-pointer"
+                  onClick={() => dispatch(setId(item._id))}
+                >
+                  <Link
+                    to="/shop/Item"
+                    className="flex flex-col justify-between h-full"
+                  >
                     <img src={item.featuredImages[0]} alt="" />
-                  <div className="flex justify-between py-3">
-                    <p className="text-black font-y font-medium text-xl">
-                      {item.Name}
-                    </p>
-                    <p className="text-black font-y font-bold text-xl">${item.Price}</p>
-                  </div>
-                </Link>
-              </Grid>
-            );
-          })}
+                    <div className="flex justify-between py-3">
+                      <p className="text-black font-y font-medium text-xl">
+                        {item.Name}
+                      </p>
+                      <p className="text-black font-y font-bold text-xl">
+                        ${item.Price}
+                      </p>
+                    </div>
+                  </Link>
+                </Grid>
+              );
+            })}
           </Grid>
         </div>
       </div>
