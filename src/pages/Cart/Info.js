@@ -5,21 +5,17 @@ import { Badge, Box, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import logo from "./../../assets/img/234logo.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
+import Cart from "./Cart";
 
 const Info = () => {
   const [open, setOpenCart] = useState(false);
+  const { cartItems } = useSelector((state) => state.cartItem);
 
-  const closeCart = (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
+  const closeCart = () => {
     setOpenCart(!open);
   };
+
   return (
     <>
       <div className="p-3 flex flex-col items-center">
@@ -34,7 +30,7 @@ const Info = () => {
           <IconButton onClick={closeCart}>
             <Badge
               invisible={false}
-              badgeContent={3}
+              badgeContent={cartItems.length}
               sx={{
                 "& .css-1o4n2ye": {
                   backgroundColor: "#dc2626",
@@ -240,6 +236,7 @@ const Info = () => {
           </Formik>
         </div>
       </div>
+      <Cart openCart={open} closeCart={closeCart} />
     </>
   );
 };

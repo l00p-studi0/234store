@@ -21,6 +21,7 @@ const Landing = () => {
     setdate(data);
   };
   setInterval(func, 1000);
+  
 
   useEffect(() => {
     (async function () {

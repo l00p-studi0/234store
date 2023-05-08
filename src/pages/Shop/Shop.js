@@ -12,6 +12,7 @@ const Shop = () => {
   const [open, setOpenCart] = useState(false);
   const dispatch = useDispatch();
   const { outfits } = useSelector((state) => state.outfit);
+  const { cartItems } = useSelector((state) => state.cartItem);
 
   const closeCart = () => {
     setOpenCart(!open);
@@ -31,7 +32,7 @@ const Shop = () => {
           <IconButton onClick={closeCart}>
             <Badge
               invisible={false}
-              badgeContent={3}
+              badgeContent={cartItems.length}
               sx={{
                 "& .css-1o4n2ye": {
                   backgroundColor: "#dc2626",

@@ -99,10 +99,10 @@ const Item = () => {
           <IconButton onClick={closeCart}>
             <Badge
               invisible={false}
-              badgeContent={3}
+              badgeContent={cartItems.length}
               sx={{
                 "& .css-1o4n2ye": {
-                  backgroundColor: "#dc2626",
+                  backgroundColor: "#7F599E",
                   color: "white",
                 },
               }}
@@ -150,10 +150,10 @@ const Item = () => {
                 sx={{
                   "& .css-fvipm8.Mui-focused .MuiOutlinedInput-notchedOutline":
                     {
-                      borderColor: "#dc2626",
+                      borderColor: "#7F599E",
                     },
                   "& .css-1ald77x.Mui-focused": {
-                    color: "#dc2626",
+                    color: "#7F599E",
                   },
                 }}
               >
@@ -181,10 +181,10 @@ const Item = () => {
                 sx={{
                   "& .css-fvipm8.Mui-focused .MuiOutlinedInput-notchedOutline":
                     {
-                      borderColor: "#dc2626",
+                      borderColor: "#7F599E",
                     },
                   "& .css-1ald77x.Mui-focused": {
-                    color: "#dc2626",
+                    color: "#7F599E",
                   },
                 }}
               >
