@@ -42,7 +42,7 @@ const Info = () => {
             </Badge>
           </IconButton>
         </div>
-        <div className="p-8 w-2/4">
+        <div className="p-8 w-full md:w-2/4">
           <p className="font-n text-lg font-semibold mb-10">
             Shipping Information
           </p>
