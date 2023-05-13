@@ -34,7 +34,7 @@ export default function App() {
     <>
       {/* <h1>Hello Test user</h1> */}
       <FlutterWaveButton
-        className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10 hover:scale-90 duration-300"
+        className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10"
         {...fwConfig}
       />
     </>
