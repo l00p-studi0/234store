@@ -48,7 +48,7 @@ const Info = () => {
               badgeContent={cartItems.length}
               sx={{
                 "& .css-1o4n2ye": {
-                  backgroundColor: "#dc2626",
+                  backgroundColor: "#7F599E",
                   color: "white",
                 },
               }}
