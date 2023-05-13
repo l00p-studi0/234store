@@ -7,14 +7,28 @@ import logo from "./../../assets/img/234logo.png";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
 import Cart from "./Cart";
+import {
+  GeoapifyGeocoderAutocomplete,
+  GeoapifyContext,
+} from "@geoapify/react-geocoder-autocomplete";
+import "@geoapify/geocoder-autocomplete/styles/minimal.css";
+import "./Info.css";
 
 const Info = () => {
   const [open, setOpenCart] = useState(false);
   const { cartItems } = useSelector((state) => state.cartItem);
+  const [mapaddress, setAddress] = useState("");
 
   const closeCart = () => {
     setOpenCart(!open);
   };
+  function onPlaceSelect(value) {
+    setAddress(value.properties.formatted);
+  }
+
+  function onSuggectionChange(value) {
+    // console.log(value);
+  }
 
   return (
     <>
@@ -53,9 +67,6 @@ const Info = () => {
               email: "",
               phone: "",
               address: "",
-              city: "",
-              country: "",
-              state: "",
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
@@ -65,16 +76,19 @@ const Info = () => {
               lastname: Yup.string().required("This field is required !"),
               phone: Yup.string().required("This field is required !"),
               address: Yup.string().required("This field is required !"),
-              city: Yup.string().required("This field is required !"),
-              country: Yup.string().required("This field is required !"),
-              state: Yup.string().required("This field is required !"),
             })}
-            //   onSubmit={async (values) => {
-            //     const body = {
-            //       firstname: values.firstname,
-            //     };
-            //     handleFormSubmit(JSON.stringify(body));
-            //   }}
+            onSubmit={async (values) => {
+              const body = {
+                firstname: values.firstname,
+                lastname: values.lastname,
+                email: values.email,
+                phone: values.phone,
+                address: values.address,
+                location: mapaddress,
+                
+              };
+              console.log(JSON.stringify(body));
+            }}
           >
             {({
               values,
@@ -204,27 +218,31 @@ const Info = () => {
 
                 <Box className="flex flex-col">
                   <label
-                    htmlFor="state"
+                    htmlFor="address"
                     className="font-n font-bold text-sm mb-1 mt-4"
                   >
-                    State
+                    Location
                   </label>
-                  <input
-                    type="text"
-                    id="state"
-                    name="state"
-                    onChange={handleChange}
-                    onSubmit={handleSubmit}
-                    onBlur={handleBlur}
-                    value={values.state}
-                    className="p-1 border-ashh border-[1px] rounded-[2px] "
-                  ></input>
-                  {errors.state && touched.state && (
+                  <GeoapifyContext apiKey="9aeabb19cccc4ec0aab4fcd4e6f52cad">
+                    <GeoapifyGeocoderAutocomplete
+                      placeholder="."
+                      type="locality"
+                      lang="en"
+                      // position={position}
+                      countryCodes="auto"
+                      // limit={limit}
+                      // value={displayValue}
+                      placeSelect={onPlaceSelect}
+                      suggestionsChange={onSuggectionChange}
+                    />
+                  </GeoapifyContext>
+                  {/* {mapaddress && (
                     <span className="font-n font-bold text-sm text-red">
-                      {errors.state}
+                      {errors.address}
                     </span>
-                  )}
+                  )} */}
                 </Box>
+
                 <button
                   type="submit"
                   className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10 hover:scale-90 duration-300"

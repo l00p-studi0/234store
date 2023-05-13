@@ -77,13 +77,13 @@ const Landing = () => {
       </div>
 
       <div className="fixed bottom-1 left-5">
-        <a href="" target="_blank">
+        <a href="mailto:Help@official234.com" target="_blank">
           <img src={facebook} alt="facebook" className="w-[30px] my-3" />
         </a>
-        <a href="" target="_blank">
+        <a href="https://instagram.com/official234store?igshid=NTc4MTIwNjQ2YQ==" target="_blank">
           <img src={instagram} alt="instagram" className="w-[30px] my-3" />
         </a>
-        <a href="" target="_blank">
+        <a href="https://www.tiktok.com/@official234store?_t=8c916YQ1AF8&_r=1" target="_blank">
           <img src={tiktok} alt="tiktok" className="w-[30px] my-3" />
         </a>
       </div>

@@ -10,14 +10,14 @@ const Cart = (props) => {
   const { cartItems } = useSelector((state) => state.cartItem);
 
   useEffect(() => {
-    console.log(cartItems);
+    // console.log(cartItems);
   }, []);
 
   const totalPrice = cartItems.reduce((currentItem, currentIteration) => {
     return currentItem + currentIteration.price;
   }, 0);
 
-  console.log(totalPrice);
+  // console.log(totalPrice);
 
 
   return (
@@ -58,6 +58,7 @@ const Cart = (props) => {
                       <p className="font-r font-medium text-md ">
                         Quantity: {item.amount}
                       </p>
+                      
                     </div>
                   </div>
 

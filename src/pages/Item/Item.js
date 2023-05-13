@@ -27,7 +27,7 @@ const Item = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartItem);
 
-  const cartItem = [
+  let cartItem = [
     ...cartItems,
     {
       image: itemDetail.length === 0 ? null : itemDetail.featuredImages[0],
@@ -36,12 +36,32 @@ const Item = () => {
       amount: quantity,
       colors: color,
       size: "X",
-      id: itemDetail._id
-    }
+      id: itemDetail._id,
+    },
   ];
+  // let addedCart = [...cartItems, cartItem];
+
+  // const setItem = () => {
+  //   const item = cartItems.filter((items) => items.id === cartItem.id);
+  //   // item[0].amount += cartItem.amount
+
+  //   if (item.length > 0) {
+  //     const adding = cartItems;
+  //     const itemIndex = adding.indexOf(item[0]);
+  //     adding[itemIndex].amount += cartItem.amount;
+  //     console.log(adding);
+  //     dispatch(setCart(adding));
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 5000);
+  //   } else {
+  //     dispatch(setCart(addedCart));
+  //   }
+  // };
+
   useEffect(() => {
-    console.log(cartItems);
-  }, [])
+    // console.log(cartItems);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -234,6 +254,7 @@ const Item = () => {
                 onClick={() => {
                   handleClickOpen();
                   dispatch(setCart(cartItem));
+                  // setItem();
                   // console.log(cartItem);
                 }}
               >
