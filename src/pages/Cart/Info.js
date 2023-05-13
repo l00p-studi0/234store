@@ -13,6 +13,7 @@ import {
 } from "@geoapify/react-geocoder-autocomplete";
 import "@geoapify/geocoder-autocomplete/styles/minimal.css";
 import "./Info.css";
+import Payment from "../Flutterwave/Payment";
 
 const Info = () => {
   const [open, setOpenCart] = useState(false);
@@ -85,9 +86,8 @@ const Info = () => {
                 phone: values.phone,
                 address: values.address,
                 location: mapaddress,
-                
               };
-              console.log(JSON.stringify(body));
+              // console.log(JSON.stringify(body));
             }}
           >
             {({
@@ -243,12 +243,13 @@ const Info = () => {
                   )} */}
                 </Box>
 
-                <button
+                {/* <button
                   type="submit"
                   className="bg-red h-[50px] w-full text-white font-n font-medium text-md max-lg:text-sm mt-10 hover:scale-90 duration-300"
                 >
                   Continue to shipping
-                </button>
+                </button> */}
+                <Payment />
               </form>
             )}
           </Formik>
