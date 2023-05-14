@@ -3,11 +3,13 @@ import { Box, Drawer, IconButton, Slide } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ClearIcon from "@mui/icons-material/Clear";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteItem } from "../../redux/cart";
 
 const Cart = (props) => {
   const { cartItems } = useSelector((state) => state.cartItem);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // console.log(cartItems);
@@ -18,7 +20,6 @@ const Cart = (props) => {
   }, 0);
 
   // console.log(totalPrice);
-
 
   return (
     <>
@@ -58,12 +59,11 @@ const Cart = (props) => {
                       <p className="font-r font-medium text-md ">
                         Quantity: {item.amount}
                       </p>
-                      
                     </div>
                   </div>
 
                   <div className="flex flex-col justify-between">
-                    <IconButton>
+                    <IconButton onClick={()=>dispatch(deleteItem(item.id))}>
                       <ClearIcon />
                     </IconButton>
                     <p className="font-r font-semibold text-lg ">
