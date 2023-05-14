@@ -3,11 +3,11 @@ import { FlutterWaveButton, closePaymentModal } from "flutterwave-react-v3";
 
 export default function App() {
   const config = {
-    public_key: "FLWPUBK-**************************-X",
+    public_key: "FLWPUBK_TEST-8b31322d3f6c32ef56b77d50f9acac3c-X",
     tx_ref: Date.now(),
     amount: 100,
     currency: "NGN",
-    payment_options: "card,mobilemoney,ussd",
+    payment_options: "card,mobilemoney,ussd,bank",
     customer: {
       email: "user@gmail.com",
       phone_number: "070********",

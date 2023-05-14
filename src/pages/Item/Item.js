@@ -13,7 +13,7 @@ import axios from "axios";
 import Carousel from "nuka-carousel";
 import Dialog from "@mui/material/Dialog";
 import ClearIcon from "@mui/icons-material/Clear";
-import { setCart } from "../../redux/cart";
+import { setCart } from "../../redux/cart";``
 
 const Item = () => {
   const [size, setSize] = useState("");

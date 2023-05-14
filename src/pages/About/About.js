@@ -9,17 +9,18 @@ import { Badge, IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const About = () => {
-//   const [datestate, setdate] = useState("");
-//   const [time, settime] = useState("");
-//   const func = () => {
-//     var d = new Date();
-//     var da = d.toLocaleTimeString();
-//     settime(da);
-//     var date = new Date();
-//     var data = date.toLocaleDateString("en-us", { dateStyle: "full" });
-//     setdate(data);
-//   };
-//   setInterval(func, 1000);
+  //   const [datestate, setdate] = useState("");
+  //   const [time, settime] = useState("");
+  //   const func = () => {
+  //     var d = new Date();
+  //     var da = d.toLocaleTimeString();
+  //     settime(da);
+  //     var date = new Date();
+  //     var data = date.toLocaleDateString("en-us", { dateStyle: "full" });
+  //     setdate(data);
+  //   };
+  //   setInterval(func, 1000);
+  const { cartItems } = useSelector((state) => state.cartItem);
   return (
     <>
       <div className="flex flex-col items-center  min-h-screen w-full">
@@ -34,10 +35,10 @@ const About = () => {
           <IconButton>
             <Badge
               invisible={false}
-              badgeContent={3}
+              badgeContent={cartItems.length}
               sx={{
                 "& .css-1o4n2ye": {
-                  backgroundColor: "#dc2626",
+                  backgroundColor: "#7F599E",
                   color: "white",
                 },
               }}
@@ -51,18 +52,18 @@ const About = () => {
           <img src={one} alt="234" className="scale-150" />
         </div>
         <p className="w-[90%] mt-7 font-y text-xl">
-          <span className="font-r font-semibold text-2xl"> +234 </span>is a premier luxury clothing brand that celebrates the richness
-          of Nigerian culture. Founded in 2022 by Funto Adeyemo, +234 blends the
-          beauty and heritage of Nigeria to create refined garments with a
-          simplistic style that exudes sophistication and class. At +234, our
-          ultimate goal is to shift the world's perception of Nigeria by
-          providing quality clothing made from the finest materials that can be
-          worn anywhere. We believe in empowering our customers to be
-          themselves, embrace their roots, and take pride in their unique
-          identities. Our clothing lets you express your individuality,
-          confidence, and style like never before. From the moment you slip into
-          a +234 garment, you'll feel the difference in quality and
-          craftsmanship.
+          <span className="font-r font-semibold text-2xl"> +234 </span>is a
+          premier luxury clothing brand that celebrates the richness of Nigerian
+          culture. Founded in 2022 by Funto Adeyemo, +234 blends the beauty and
+          heritage of Nigeria to create refined garments with a simplistic style
+          that exudes sophistication and class. At +234, our ultimate goal is to
+          shift the world's perception of Nigeria by providing quality clothing
+          made from the finest materials that can be worn anywhere. We believe
+          in empowering our customers to be themselves, embrace their roots, and
+          take pride in their unique identities. Our clothing lets you express
+          your individuality, confidence, and style like never before. From the
+          moment you slip into a +234 garment, you'll feel the difference in
+          quality and craftsmanship.
         </p>
         <p className="w-[90%] mt-7 font-y text-xl">
           We use only the best materials and pay close attention to every detail
