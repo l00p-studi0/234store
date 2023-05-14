@@ -7,6 +7,7 @@ import instagram from "./../../assets/img/instagram.png";
 import tiktok from "./../../assets/img/tiktok.png";
 import { Badge, IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 const About = () => {
   //   const [datestate, setdate] = useState("");
