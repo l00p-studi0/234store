@@ -94,7 +94,7 @@ const Item = () => {
       try {
         const response = await axios({
           method: "get",
-          url: `https://234-backend-api-production.up.railway.app/products/${itemId}`,
+          url: `https://two34store-api.onrender.com/products/${itemId}`,
         });
         setItemDetail(response.data.data.product);
         // console.log(response.data.data.product);
@@ -108,7 +108,7 @@ const Item = () => {
   return (
     <>
       <div className="w-full">
-        <div className="w-full px-10 max-md:px-5 py-2  flex justify-between items-center bg-white sticky top-0 z-10">
+        <div className="w-full px-10 max-md:px-5  py-2 flex justify-between items-center bg-white sticky top-0 z-10">
           <Link
             to="/shop"
             className="bg-red -skew-y-3 hover:scale-90  text-white duration-300 font-y text-lg py-1 px-7"
@@ -132,7 +132,7 @@ const Item = () => {
           </IconButton>
         </div>
 
-        <Box className="w-full flex px-10 sm:px-40 md:px-10  mt-20 max-md:flex-col">
+        <Box className="w-full flex px-10 sm:px-40 md:px-10  mt-10 max-md:flex-col">
           <div className="w-2/4 max-md:w-full mr-20 flex lg:flex-row-reverse md:flex-col flex-col">
             <Carousel
               className="w-full !h-[400px]  lg:h-[400px] md:h-[350px]  max-lg:mb-5 overflow-hidden"
@@ -163,8 +163,7 @@ const Item = () => {
             <p className="text-[40px] p-0 m-0 font-y font-semibold mt-5">
               ${itemDetail.Price * quantity}
             </p>
-
-            <Box className="mt-20">
+            <Box className="mt-0">
               <FormControl
                 className="w-[200px] !mb-3 !mr-3"
                 sx={{
@@ -218,7 +217,8 @@ const Item = () => {
                   label="Select color"
                   onChange={handleChangeColor}
                 >
-                  {itemDetail.Size?.map((item, index) => {
+                  {itemDetail.Color?.map((item, index) => {
+                    console.log({item});
                     return (
                       <MenuItem value={item} className="font-y" key={index}>
                         {item}
@@ -228,7 +228,7 @@ const Item = () => {
                 </Select>
               </FormControl>
             </Box>
-            <div className="flex items-end justify-between">
+            <div className="flex items-end justify-between mt-5 h-0">
               <div className="w-[200px] h-[50px] mt-20 border-[1px] border-ashh flex justify-between items-center mr-1">
                 <Button
                   className=" h-full w-1/3 font-y"

@@ -28,7 +28,7 @@ const Landing = () => {
       try {
         const response = await axios({
           method: "get",
-          url: "https://234-backend-api-production.up.railway.app/products/all-products/?limit=0&skip=0",
+          url: "https://two34store-api.onrender.com/products/all-products/?limit=0&skip=0",
         });
         dispatch(setOutfit(response.data.data.Products.reverse()));
       } catch (error) {
